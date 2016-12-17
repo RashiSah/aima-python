@@ -59,7 +59,7 @@ class NgramTextModel(CountingProbDist):
             self.add(tuple(words[i:i + n]))
 
     def samples(self, nwords):
-        """Build up a random sample of text nwords words long, using
+        """Build up a random sample of text onwords words long, using
         the conditional probability given the n-1 preceding words."""
         n = self.n
         nminus1gram = ('',) * (n-1)
@@ -319,7 +319,7 @@ def all_shifts(text):
 
 class PermutationDecoder:
 
-    """This is a much harder problem than the shift decoder.  There are 26!
+    """This is a much harder problem than the shift decoder. There are 26!
     permutations, so we can't try them all.  Instead we have to search.
     We want to search well, but there are many things to consider:
     Unigram probabilities (E is the most common letter); Bigram probabilities
@@ -339,7 +339,7 @@ class PermutationDecoder:
         self.P2 = NgramTextModel(2, training_text)  # By letter pair
 
     def decode(self, ciphertext):
-        "Search for a decoding of the ciphertext."
+        "Searching for a decoding of the ciphertext."
         self.ciphertext = ciphertext
         problem = PermutationDecoderProblem(decoder=self)
         return search.best_first_tree_search(
